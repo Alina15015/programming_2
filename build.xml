@@ -1,0 +1,23 @@
+﻿<project>
+	<target name="clean">
+		<delete dir="classes"/>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="classes"/>
+		<javac srcdir="src" destdir="classes" classpath="lib/Pokemon.jar" includeAntRuntime="false"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar destfile="lab2.jar" basedir="classes">
+			<manifest>
+				<attribute name="Main-Class" value="Main"/>
+				<attribute name="Class-Path" value="lib/Pokemon.jar"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java jar="lab2.jar" fork="true"/>
+	</target>
+</project>
